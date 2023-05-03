@@ -626,6 +626,8 @@ void upwindTwo_v(double ***f, double ***f_conv, double *PoisPot, double **qm,
 
   // Note - dx and qm do not have ghost cells
   double *E = malloc((nX + 4) * sizeof(double));
+  double *v_cross_B = malloc((nX + 4) * sizeof(double));
+
   for (l = 2; l < nX + 2; l++) {
     E[l] = -qm[l - 2][sp] / m * (PoisPot[l + 1] - PoisPot[l - 1]) /
            (2.0 * dx[l - 2]);

@@ -4,12 +4,17 @@ EXECDIR=$(DIR)exec/
 OBJDIR=$(DIR)obj/
 SRCDIR=$(DIR)src/
 
-# GNU C compiler 
-CC=mpicc
+# clang compiler
+CC=gcc
+#CFLAGS = -O2 -Wall -I/opt/homebrew/opt/gsl/include  -I/opt/homebrew/opt/open-mpi/include/
+CFLAGS = -O2 -Wall -I/opt/homebrew/include -I/opt/homebrew/opt/gsl/include -I/opt/homebrew/opt/libomp/include
 
-# Compiler flags
-CFLAGS= -O2 -fopenmp -Wall
-LIBFLAGS = -lm -lgsl -lgslcblas
+#LIBFLAGS = -lm -lgsl -lgslcblas -lomp -lmpi
+
+LIBFLAGS = -lm -L/opt/homebrew/opt/gsl/lib -lgsl -lgslcblas -L/opt/homebrew/opt/libomp/lib -lomp -L/opt/homebrew/opt/open-mpi/lib -lmpi
+
+#LIBFLAGS = -lm -lgsl -lgslcblas -L/opt/homebrew/opt/libomp/lib -lomp -lmpi
+
 
 # Command definition
 RM=rm -f
@@ -50,6 +55,5 @@ $(OBJDIR)TNB.o : $(SRCDIR)TNB.c
 	$(CC)  -c $(CFLAGS)  $< -o $@ 2>&1 ;
 
 clean:
-	$(RM) $(OBJDIR)*.o 
+	$(RM) $(OBJDIR)*.o
 	$(RM) $(EXECDIR)*_
-

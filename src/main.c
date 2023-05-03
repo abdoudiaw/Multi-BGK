@@ -6,7 +6,7 @@
 // C libraries
 #include <math.h>
 #include <mpi.h>
-#include <omp.h>
+#include </opt/homebrew/opt/libomp/include/omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
